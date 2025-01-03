@@ -43,7 +43,6 @@ function checkLogin() {
     return;
   }
 }
-// comment 
 
 function loadAlertsPage(p) {
   checkLogin();
