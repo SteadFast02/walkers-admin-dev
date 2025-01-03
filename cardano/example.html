@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./WalletConnector.js"></script>
+        <script>
+            async function doWalletStuff() {
+                // Initialize connector
+                console.log('Initializing Wallet Connector');
+                const connector = new WalletConnector();
+
+                // Check which wallets the user has installed (normally we let them select the one to use, but here we just choose the first available)
+                const wallets = connector.getAvailableWallets();
+                console.log('Available wallets: ', wallets);
+                if (wallets.length === 0) return;
+                const connectionWalletId = wallets[0].id;
+
+                // Connect to the wallet
+                console.log('Connecting to ' + connectionWalletId);
+                const res = await connector.connect(connectionWalletId);
+                if (!res) {
+                    console.log('Failed to connect');
+                    return;
+                }
+                console.log('Connected!');
+
+                // Get the wallet's stake address
+                console.log(await connector.getStakeAddress());
+
+                // Prompt the user to sign a message
+                console.log(await connector.signMessage('Sign this message, please!'));
+            }
+        </script>
+    </head>
+    <body>
+        <button type="button" onclick="doWalletStuff()">Run Wallet Commands!</button>
+    </body>
+</html>

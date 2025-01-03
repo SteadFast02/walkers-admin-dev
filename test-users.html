@@ -1,0 +1,79 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 col-md-6">
+        <h1>Test Users</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <div class="card">
+          <div class="card-body table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Firstname</th>
+                  <th>Level</th>
+                  <th>XP</th>
+                  <th>Points</th>
+                  <th>Steps</th>
+                  <th>Distance</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tableTestUsers">
+                <!-- Content for Test Users will go here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card card-primary">
+          <form>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="firstnameTestUser">Firstname</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstnameTestUser"
+                  placeholder="Enter firstname"
+                />
+              </div>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                onclick="generateTestUser()"
+                class="btn btn-primary btn-block"
+              >
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Adjust table cell font size and padding for smaller screens */
+  @media (max-width: 768px) {
+    .table th,
+    .table td {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,115 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row mt-2">
+      <div class="col-md-6 col-lg-3 mb-3">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3 id="fullWalkingDistance"></h3>
+            <p>Full walking distance</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-navigate"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-3">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3 id="walkingDistance"></h3>
+            <p>Last 24h walking distance</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-navigate"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-2 mb-3">
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3 id="tasksCount"></h3>
+            <p>Tasks</p>
+          </div>
+          <div class="icon">
+            <i class="nav-icon fas fa-tasks"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-2 mb-3">
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h3 id="usersCount"></h3>
+            <p>Users</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-2 mb-3">
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3 id="partnershipCount"></h3>
+            <p>Partnerships</p>
+          </div>
+          <div class="icon">
+            <i class="nav-icon fas fa-handshake"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Users</h3>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr id="usersTable">
+                  <th style="width: 10px">#</th>
+                  <th style="cursor: pointer" onclick="sort('firstname')">
+                    Firstname
+                  </th>
+                  <th>Twitter Username</th>
+                  <th style="cursor: pointer" onclick="sort('email')">Email</th>
+                  <th style="cursor: pointer" onclick="sort('level')">Level</th>
+                  <th style="cursor: pointer" onclick="sort('xp')">XP</th>
+                  <th style="cursor: pointer" onclick="sort('points')">
+                    Points
+                  </th>
+                  <th style="cursor: pointer" onclick="sort('steps')">Steps</th>
+                  <th style="cursor: pointer" onclick="sort('distance')">
+                    Distance
+                  </th>
+                  <th>Walkers</th>
+                  <th>Swapable Points</th>
+                </tr>
+              </thead>
+              <tbody id="tableUsers">
+                <!-- Table content here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Adjust font sizes for mobile view */
+  @media (max-width: 576px) {
+    .small-box .inner h3 {
+      font-size: 1.5rem;
+    }
+    .small-box .inner p {
+      font-size: 0.9rem;
+    }
+  }
+</style>

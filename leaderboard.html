@@ -1,0 +1,192 @@
+<style>
+  table.table th,
+  table.table td {
+    text-align: center;
+    vertical-align: middle; /* Ensures content is vertically aligned in the center */
+  }
+  /* Container for the slider */
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Slider */
+  .slider {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  /* Circle inside the slider */
+  .slider-circle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+
+  /* Active (On) state */
+  .slider.on {
+    background-color: #4caf50;
+  }
+
+  .slider.on .slider-circle {
+    transform: translateX(26px);
+  }
+
+  /* Table and Form responsiveness */
+  @media (max-width: 768px) {
+    /* Table responsiveness */
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .table th,
+    .table td {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+
+    /* Card and select form adjustment */
+    .card-body {
+      padding: 1rem;
+    }
+
+    /* Form elements for smaller screens */
+    .form-control {
+      font-size: 0.9rem;
+    }
+
+    .slider-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    .card {
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    /* Make select dropdown full width on small screens */
+    .form-control {
+      width: 100%;
+    }
+
+    /* Stacking layout for the cards */
+    .col-md-4,
+    .col-md-12 {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 col-sm-6">
+        <h1>Leaderboard</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="card card-primary">
+          <div class="card-body">
+            <select
+              class="form-control"
+              id="taskType"
+              onchange="updateLeaderboard()"
+            ></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="slider-container">
+          <div id="slider" class="slider" onclick="leaderBoardToggleSlider()">
+            <div class="slider-circle"></div>
+          </div>
+          <span id="sliderStatus">Private</span>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Earned XP</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboardContent">
+                  <!-- Dynamic content will go here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for partnership removal -->
+<div class="modal fade" id="modal-default-partnerships">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Remove Partnership</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="partnershipModalBody">
+        <!-- Dynamic modal content will go here -->
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          onclick="removePartnership()"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

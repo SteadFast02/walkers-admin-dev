@@ -1,0 +1,148 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 col-md-6">
+        <h1>Partnerships</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <form>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="partnershipDescription"
+                />
+              </div>
+              <div class="form-group">
+                <label>URL</label>
+                <input type="text" class="form-control" id="partnershipURL" />
+              </div>
+              <div class="form-group">
+                <label>Type</label>
+                <select class="form-control" id="typeSlct">
+                  <option value="irl">IRL</option>
+                  <option value="normal">Normal</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Primary</label>
+                <select class="form-control" id="primarySlct">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Image </label>
+                <input type="file" id="partnershipImageUpload" />
+              </div>
+              <div class="form-group">
+                <label>Date and time range</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="far fa-clock"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control float-right"
+                    id="reservationtime"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                onclick="addPartnership()"
+                class="btn btn-primary"
+              >
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>URL</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Type</th>
+                  <th>Primary</th>
+                  <th>Image</th>
+                  <th>Remove Partnership</th>
+                </tr>
+              </thead>
+              <tbody id="partnershipContent">
+                <!-- Partnerships content will be populated here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="modal-default-partnerships">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Remove Partnership</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="partnershipModalBody">
+        <!-- Modal content goes here -->
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          onclick="removePartnership()"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Adjust font sizes and layout for smaller screens */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    .table {
+      font-size: 0.9rem;
+    }
+  }
+</style>

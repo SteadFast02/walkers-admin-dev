@@ -1,0 +1,106 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 col-md-6">
+        <h1>Alerts</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Alerts Table -->
+      <div class="col-12 col-lg-6">
+        <div class="card">
+          <div class="card-body table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Created Date</th>
+                  <th>Remove Alert</th>
+                </tr>
+              </thead>
+              <tbody id="alertsContent">
+                <!-- Alerts content will be populated here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form to Add Alerts -->
+      <div class="col-12 col-lg-6">
+        <div class="card card-primary">
+          <form>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="alertName">Title</label>
+                <input type="text" class="form-control" id="alertName" />
+              </div>
+              <div class="form-group">
+                <label for="alertDescription">Description</label>
+                <input type="text" class="form-control" id="alertDescription" />
+              </div>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                onclick="addAlert()"
+                class="btn btn-primary"
+              >
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for Removing Alerts -->
+<div class="modal fade" id="modal-default-alerts">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Remove Alert</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="alertModalBody">
+        <!-- Modal body content goes here -->
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger" onclick="removeAlert()">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Adjust font sizes and layout for smaller screens */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    .table {
+      font-size: 0.9rem;
+    }
+  }
+</style>

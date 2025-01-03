@@ -1,0 +1,211 @@
+<style>
+
+    .mt10{
+        margin-top: 10px;
+    }
+  /* Center-align all table headers and data cells */
+  table.table th,
+  table.table td {
+    text-align: center;
+    vertical-align: middle; /* Ensures content is vertically aligned in the center */
+  }
+
+    /* Adjust table cell font size and padding for smaller screens */
+    @media (max-width: 768px) {
+        .table th, .table td {
+            font-size: 0.9rem;
+            padding: 0.5rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+</style>
+
+<!-- <section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h1>Advertisement</h1>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8 mb-2">
+                <h4 class="mt10">Advertisement</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Make table responsive -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Link URL</th>
+                                        <th>Image</th>
+                                        <th>View</th>
+                                        <th>Enable/Disable</th>
+                                        <th>Remove Adv</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="advContent">
+                                    <!-- Dynamic content will go here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+            <div class="pagination-container text-center mt-3">
+              <ul
+                id="advpagination"
+                class="pagination justify-content-center"
+              ></ul>
+            </div>
+          </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add advertisement form -->
+            <div class="col-12 col-lg-4 mb-2">
+                <h4 class="mt10">Create New Advertisement</h4>
+                <div class="card card-primary">
+                    <form>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="advName">Name</label>
+                                <input type="text" class="form-control" id="advName" name="advName" placeholder="Enter name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="advName">Link</label>
+                                <input type="text" class="form-control" id="linkUrl" name="linkUrl" placeholder="Provide link">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Image </label>
+                                <input type="file" id="advImageUpload" class="form-control-file" accept="image/*">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Date and time range</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="advreservationtime">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="button" onclick="addAdv()" class="btn btn-primary btn-block">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!-- image preview -->
+
+<div id="advImageModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Image Preview</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="advModalImage" src="" alt="Ad Image" style="max-width: 100%; max-height: 100%;" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Update Advertisement Modal -->
+<div class="modal fade" id="modal-default-Updateadv">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Advertisement</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="advUpdateName">
+                </div>
+                <div class="form-group">
+                    <label>Link</label>
+                    <input type="text" class="form-control" id="advUpdateLink">
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" id="advUpdatedImageUpload" class="form-control-file">
+                    <img id="advImagePreview" style="width: 100px; margin-top: 10px; display: none;">
+                </div>
+                <div class="form-group">
+                    <label>Date and time range</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-clock"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="reservationtimeupdate">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="updateAdvButton" class="btn btn-primary btn-block" data-dismiss="modal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remove Advertisement Modal -->
+<div class="modal fade" id="modal-default-advremove">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Remove Advertisement</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="advRemoveModalBody">
+                <!-- Content will be populated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="removeAdv()" data-dismiss="modal">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts for dependencies -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+

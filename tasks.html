@@ -1,0 +1,245 @@
+<style>
+  .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table th {
+  font-weight: bold;
+  background-color: #f8f9fa; /* Light grey for header background */
+}
+
+.table-responsive {
+  overflow-x: auto; /* Horizontal scrolling for smaller screens */
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+.mt10{
+        margin-top: 10px;
+    }
+
+#taskDescriptionModal .modal-body {
+    max-height: 400px; /* Set maximum height for the modal body */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+</style>
+
+<!-- <section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 col-md-7">
+        <h1>Tasks</h1>
+        <h1>Tasks</h1>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <h4 class="mt10">Tasks</h4>
+        <div class="card">
+          <div class="card-body">
+                <div class="table-responsive">
+  <table class="table table-bordered text-center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Reward</th>
+        <th>Twitter Post Link</th>
+        <th>For Twitter user</th>
+        <th>For Test User</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Image</th>
+        <th>Remove Task</th>
+      </tr>
+    </thead>
+    <tbody id="taskContent"></tbody>
+  </table>
+</div>
+          </div>
+          <div>
+            <div class="pagination-container text-center mt-3">
+              <ul
+                id="taskpagination"
+                class="pagination justify-content-center"
+              ></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="col-12 col-md-4">
+    <h4 class="mt10">Create New Task</h4>
+    <div class="card card-primary">
+        <form>
+            <div class="card-body">
+                <!-- Task Name Dropdown -->
+                <div class="form-group">
+                    <label for="taskName">Name</label>
+                    <select class="form-control" id="taskName" name="taskName">
+                        <!-- <option value="">Select Task Name</option> -->
+                    </select>
+                    <input type="text" class="form-control mt-2" id="newTaskName" style="display:none;" placeholder="Enter New Task Name" />
+                </div>
+                <!-- Other form fields as before... -->
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <input type="text" class="form-control" id="taskDescription" placeholder="Description..." />
+                </div>
+                <div class="form-group">
+                    <label for="taskReward">Reward(XP)</label>
+                    <input type="number" class="form-control" id="taskReward" placeholder="Reward me"/>
+                </div>
+                <div class="form-group">
+                    <label>For Test User</label>
+                    <select class="form-control" id="forTestUserSlct">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>For Twitter User</label>
+                    <select
+                        class="form-control"
+                        id="forTwitterUserSlct"
+                        onchange="handleTwitterUserSelection()"
+                    >
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group" id="twitterUserInputContainer"></div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" id="taskImageUpload" accept="image/*" />
+                </div>
+                <div class="form-group">
+                    <label>Date and time range</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-clock"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="reservationtime" />
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" onclick="addTask()" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+    </div>
+  </div>
+</section>
+
+
+<div
+  class="modal fade"
+  id="taskDescriptionModal"
+  tabindex="-1"
+  aria-labelledby="descriptionModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="taskDescriptionModalTitle"></h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="taskDescriptionModalBody">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="taskImageModal"
+  tabindex="-1"
+  aria-labelledby="imageModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="taskImageModalTitle">Image Preview</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+      </div>
+      <div class="modal-body text-center" id="taskImageModalBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Remove Task Modal -->
+<div class="modal fade" id="modal-default-tasks">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Remove Task</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="taskModalBody"></div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger" onclick="removeTask()">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
