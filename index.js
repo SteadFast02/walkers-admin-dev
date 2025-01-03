@@ -39,7 +39,9 @@ function loadPage(page) {
 function checkLogin() {
   const token = localStorage.getItem("t");
   if (!token) {
-    window.location.href = "https://walkers-alpha.vercel.app/login.html";
+    // window.location.href = "https://walkers-alpha.vercel.app/login.html";
+    window.location.href = "https://walkers-admin-dev.vercel.app/login.html";
+
     return;
   }
 }
